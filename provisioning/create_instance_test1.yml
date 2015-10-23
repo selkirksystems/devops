@@ -7,7 +7,7 @@
     gather_facts: False
     tags: spacecadet
     vars:
-      instance_type: t1.micro
+      instance_type: t2.micro
       security_group: SK-FMT-WebTier-PROD
       image: ami-5189a661
       region: us-west-2
