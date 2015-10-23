@@ -2,7 +2,7 @@
 # Based heavily on the Ansible documentation on EC2:
 # http://docs.ansible.com/ec2_module.html
   - name: Provision an EC2 node
-    hosts: local
+    hosts: localhost
     connection: local
     gather_facts: False
     tags: spacecadet
@@ -14,7 +14,8 @@
       keypair: Selkirk-PK
     tasks:
       - name: Launch new Instance
-        local_action: ec2 instance_tags="Name=SpaceCadetTest1" group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }}
+        local_action: ec2 instance_tags="Name=SpaceCadetTest1" group={{ security_group }} 
+        instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }}
         register: ec2
   
 #      - name: Add instance to local host group
