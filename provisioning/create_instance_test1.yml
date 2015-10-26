@@ -12,7 +12,6 @@
       image: ami-5189a661
       region: us-west-2
       keypair: Selkirk-PK
-	  
     tasks:
       - name: Launch new Instance
         local_action: ec2 instance_tags="Name=SpaceCadetTest2" group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }}
