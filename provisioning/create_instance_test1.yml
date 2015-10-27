@@ -5,7 +5,8 @@
     hosts: localhost
     connection: local
     gather_facts: False
-    tags: spacecadet
+    roles:
+     - aws-opsworks-ec2-role
     vars:
       instance_type: t2.micro
       security_group: AWS-OpsWorks-Custom-Server
@@ -14,7 +15,7 @@
       keypair: Selkirk-PK
     tasks:
       - name: Launch new Instance
-        local_action: ec2 instance_tags='{"Name":"FMTdev - devweb1","opsworks:instance":"devweb1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }}
+        local_action: ec2 instance_tags='{"Name":"FMTdev - devweb2","opsworks:instance":"devweb1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }}
         register: ec2
 
       - name: Output info about the instance
