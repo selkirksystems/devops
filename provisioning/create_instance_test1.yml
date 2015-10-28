@@ -14,7 +14,7 @@
       keypair: Selkirk-PK
     tasks:
       - name: Launch new Instance
-        local_action: ec2 instance_tags='{"Name":"FMTdev - devweb","opsworks:instance":"devweb1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true aws_zone='{{ region }}{{ zone }}' keypair={{ keypair }}
+        local_action: ec2 instance_tags='{"Name":"FMTdev - devweb","opsworks:instance":"devweb1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{region}} aws_zone='{{ region }}{{ zone }}' keypair={{ keypair }}
         register: ec2
 
       - name: Output info about the instance
