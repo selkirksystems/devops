@@ -9,7 +9,7 @@
       instance_type: t2.micro
       security_group: AWS-OpsWorks-Custom-Server
       image: ami-5189a661
-      region: us-west-2a
+      region: us-west-2
       zone: a
       keypair: Selkirk-PK
     tasks:
