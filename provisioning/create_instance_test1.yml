@@ -10,10 +10,11 @@
       security_group: AWS-OpsWorks-Custom-Server
       image: ami-5189a661
       region: us-west-2
+      zone: a
       keypair: Selkirk-PK
     tasks:
       - name: Launch new Instance
-        local_action: ec2 instance_tags='{"Name":"FMTdev - devweb2","opsworks:instance":"devweb1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} keypair={{ keypair }}
+        local_action: ec2 instance_tags='{"Name":"FMTdev - devweb","opsworks:instance":"devweb1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group }} instance_type={{ instance_type}} image={{ image }} wait=true region={{ region }} zone={{ zone }} keypair={{ keypair }}
         register: ec2
 
       - name: Output info about the instance
