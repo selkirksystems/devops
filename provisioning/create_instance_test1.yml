@@ -12,10 +12,11 @@
       image: ami-5189a661
       region: us-west-2
       zone: a
+      instance_count: 2 
       keypair: Selkirk-PK
     tasks:
       - name: Launch new Instance
-        local_action: ec2 instance_tags='{"Name":"FMTdev - web1","opsworks:instance":"web1","opsworks:layer:web1":"Web","opsworks:stack":"FMTdev"}' group={{ security_group1 }},{{ security_group2 }} instance_type={{ instance_type}} image={{ image }} wait=true region={{region}} aws_zone='{{ region }}{{ zone }}' keypair={{ keypair }}
+        local_action: ec2 instance_tags='{"Name":"FMTdev - web","Layer":"Web"}' group={{ security_group1 }},{{ security_group2 }} count={{ instance_count }} instance_type={{ instance_type}} image={{ image }} wait=true region={{region}} aws_zone='{{ region }}{{ zone }}' keypair={{ keypair }}
         register: ec2
 
       - name: Output info about the instance
