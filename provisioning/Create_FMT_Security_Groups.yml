@@ -1,6 +1,6 @@
 ---
   - name: Provision an EC2 Security group
-    hosts: local
+    hosts: localhost
     connection: local
     gather_facts: False
     tags: provisioning
@@ -10,7 +10,7 @@
       region: us-west-2 # Change the Region
       keypair: Selkirk-PK # Change the keypair name
 
-    # Task that will be used to Launch/Create an EC2 Instance
+    # Task that will be used to Launch/Create an EC2 Security Group(s)
     tasks:
       - name: Create FMT Web security group
         local_action: 
