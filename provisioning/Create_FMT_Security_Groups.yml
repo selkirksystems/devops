@@ -6,7 +6,6 @@
     tags: provisioning
     # Necessary Variables for creating/provisioning the EC2 Instance
     vars:
-      web_security_group: SK-FMTWebTier-Dev 
       region: us-west-2 # Change the Region
       keypair: Selkirk-PK # Change the keypair name
 
