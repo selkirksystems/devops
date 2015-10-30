@@ -6,7 +6,7 @@
     tags: provisioning
     # Necessary Variables for creating/provisioning the EC2 Instance
     vars:
-      security_group: SK-FMTWebTier-Dev # Change the security group name here
+      web_security_group: SK-FMTWebTier-Dev 
       region: us-west-2 # Change the Region
       keypair: Selkirk-PK # Change the keypair name
 
@@ -15,22 +15,19 @@
       - name: Create FMT Web security group
         local_action: 
           module: ec2_group
-          name: "{{ security_group }}"
-          description: Security Group for FMT Web Servers
+          name: "{{ web_security_group }}"
+          description: Security Group for FMTDev Web Servers
           region: "{{ region }}"
           rules:
             - proto: tcp
-              from_port: 8443
-              to_port: 8443
+              type: https
+              from_port: 443
+              to_port: 443
               cidr_ip: 0.0.0.0/0
             - proto: tcp
               type: http
               from_port: 80
               to_port: 80
-              cidr_ip: 0.0.0.0/0
-            - proto: tcp
-              from_port: 8080
-              to_port: 8080
               cidr_ip: 0.0.0.0/0
           rules_egress:
             - proto: all
