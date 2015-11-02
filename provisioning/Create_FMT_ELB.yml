@@ -15,13 +15,13 @@
           name: "KevinELB"
           state: present
           region: "{{ region }}"
-        zones:
-          - us-west-2a
-        listeners:
-          - protocols: http
-          - load_balancer_port: 80
-          - instance_port: 80
-        stickiness:
-          type: loadbalancer
-          enabled: yes
-          expiration: 300
+          zones:
+            - us-west-2a
+          listeners:
+            - protocols: http
+            - load_balancer_port: 80
+            - instance_port: 80
+          stickiness:
+            type: loadbalancer
+            enabled: yes
+            expiration: 300
