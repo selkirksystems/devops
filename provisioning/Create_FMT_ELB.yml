@@ -21,7 +21,15 @@
             - protocols: http
             - load_balancer_port: 80
             - instance_port: 80
-          stickiness:
-            type: loadbalancer
-            enabled: yes
-            expiration: 300
+          health_check:
+            ping_protocol: http # options are http, https, ssl, tcp
+            ping_port: 80
+            ping_path: "/" # not required for tcp or ssl
+            response_timeout: 5 # seconds
+            interval: 30 # seconds
+            unhealthy_threshold: 2
+            healthy_threshold: 2
+#          stickiness:
+#            type: loadbalancer              ***   need module version 2.0
+#            enabled: yes
+#            expiration: 300
