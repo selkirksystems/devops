@@ -12,7 +12,7 @@
       - name: Create Web ELB
         local_action:
           module: ec2_elb_lb
-          name: "KevinELB"
+          name: KevinELB
           state: present
           region: "{{ region }}"
           zones:
@@ -22,14 +22,17 @@
             - load_balancer_port: 80
             - instance_port: 80
           health_check:
-            ping_protocol: http # options are http, https, ssl, tcp
+            ping_protocol: http 
             ping_port: 80
-            ping_path: "/" # not required for tcp or ssl
-            response_timeout: 5 # seconds
-            interval: 30 # seconds
+            ping_path: "/" 
+            response_timeout: 5 
+            interval: 30 
             unhealthy_threshold: 2
             healthy_threshold: 2
+          register: elb_result
+
 #          stickiness:
 #            type: loadbalancer              ***   need module version 2.0
 #            enabled: yes
 #            expiration: 300
+# ping protocol options are http, https, ssl, tcp
