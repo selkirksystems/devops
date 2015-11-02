@@ -9,13 +9,14 @@
       keypair: Selkirk-PK # Change the keypair name
     # Task that will be used to Launch/Create an EC2 Security Group(s)
     tasks:
-      - name: create elb
-        ec2_elb_lb:
-        name: khELB
-        state: present
-        region: "{{ region }}"
-        zones:
-          - us-west-2a
+      - name: Create Web ELB
+        local_action:
+          module: ec2_elb_lb
+          name: KevinELB
+          state: present
+          region: "{{ region }}"
+          zones:
+            - us-west-2a
         listeners:
           - protocol: http
             load_balancer_port: 80
