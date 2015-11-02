@@ -33,3 +33,32 @@
               type: all
               cidr_ip: 0.0.0.0/0
 
+      - name: Create FMT Backend security group
+        local_action: 
+          module: ec2_group
+          name: "{{ backend_security_group }}"
+          description: Security Group for FMTDev backend Servers
+          region: "{{ region }}"
+          rules:
+            - proto: tcp
+              type: https
+              from_port: 443
+              to_port: 443
+              cidr_ip: 172.31.0.0/16
+            - proto: tcp
+              type: http
+              from_port: 80
+              to_port: 80
+              cidr_ip: 172.31.0.0/16
+            - proto: tcp
+              from_port: 8443
+              to_port: 8443
+              cidr_ip: 172.31.0.0/16
+            - proto: tcp
+              from_port: 8080
+              to_port: 8080
+              cidr_ip: 172.31.0.0/16
+          rules_egress:
+            - proto: all
+              type: all
+              cidr_ip: 0.0.0.0/0
