@@ -14,7 +14,7 @@
           module: ec2_elb_lb
           name: "KevinELB"
           state: present
-          region: {{ region }}
+          region: "{{ region }}"
         zones:
           - us-west-2a
         listeners:
