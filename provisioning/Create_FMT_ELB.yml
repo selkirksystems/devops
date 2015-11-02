@@ -25,4 +25,4 @@
               load_balancer_port: 443
               instance_protocol: http
               instance_port: 80
-          register: elb
+        register: elb
