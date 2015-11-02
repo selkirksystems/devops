@@ -1,0 +1,28 @@
+---
+  - name: Provision an EC2 ELB
+    hosts: localhost
+    connection: local
+    gather_facts: False
+    tags: ELB 
+    # Necessary Variables for creating/provisioning the EC2 Instance
+    vars:
+      region: us-west-2 # Change the Region
+      keypair: Selkirk-PK # Change the keypair name
+    # Task that will be used to Launch/Create an EC2 Security Group(s)
+    tasks:
+      - name: Create FMT Web security group
+	    local_action:
+          module: ec2_elb_lb
+          name: "KevinELB"
+          state: present
+          region: {{ region }}
+        zones:
+          - us-west-2a
+        listeners:
+          - protocols: http
+          - load_balancer_port: 80
+          - instance_port: 80
+        stickiness:
+          type: loadbalancer
+          enabled: yes
+          expiration: 300
