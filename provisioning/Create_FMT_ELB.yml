@@ -13,7 +13,7 @@
         ec2_elb_lb:
         name: khELB
         state: present
-        region: us-west-2
+        region: "{{ region }}"
         zones:
           - us-west-2a
         listeners:
