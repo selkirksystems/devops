@@ -12,7 +12,7 @@
       - name: Create Web ELB
         local_action:
           module: ec2_elb_lb
-          name: FMT_Web_dev
+          name: FMTdev
           state: present
           region: "{{ region }}"
           zones:
