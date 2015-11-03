@@ -15,8 +15,10 @@
           name: FMTdev
           state: present
           region: "{{ region }}"
-          zones:
-            - us-west-2a
+          subnets:
+            - subnet-dcf077ab
+            - subnet-02234267
+            - subnet-6e4e9537
           listeners:
             - protocol: http
               load_balancer_port: 80
