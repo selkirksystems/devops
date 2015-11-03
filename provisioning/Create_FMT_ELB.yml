@@ -20,16 +20,13 @@
             - subnet-02234267
             - subnet-6e4e9537
           listeners:
-            - protocol: http
-              load_balancer_port: 80
-              instance_port: 80
             - protocol: https
               load_balancer_port: 443
               instance_port: 443
               ssl_certificate_id: "arn:aws:iam::326350832779:server-certificate/SelkirkWildcard"
           health_check:
-            ping_protocol: http
-            ping_port: 80
+            ping_protocol: https
+            ping_port: 443
             ping_path: "/" 
             response_timeout: 5 
             interval: 30 
