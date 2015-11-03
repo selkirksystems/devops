@@ -42,8 +42,10 @@
           state: present
           scheme: internal
           region: "{{ region }}"
-          zones:
-            - us-west-2a
+          subnets:
+            - subnet-dcf077ab
+            - subnet-02234267
+            - subnet-6e4e9537
           listeners:
             - protocol: http
               load_balancer_port: 8761
@@ -65,8 +67,10 @@
           state: present
           scheme: internal
           region: "{{ region }}"
-          zones:
-            - us-west-2a
+          subnets:
+            - subnet-dcf077ab
+            - subnet-02234267
+            - subnet-6e4e9537
           listeners:
             - protocol: http
               load_balancer_port: 8080
