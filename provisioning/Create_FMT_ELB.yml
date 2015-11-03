@@ -12,7 +12,7 @@
       - name: Create Web ELB
         local_action:
           module: ec2_elb_lb
-          name: KevinELB
+          name: FMT_WebELB_dev
           state: present
           region: "{{ region }}"
           zones:
@@ -21,6 +21,10 @@
             - protocol: http
               load_balancer_port: 80
               instance_port: 80
+            - protocol: https
+              load_balancer_port: 443
+              instance_port: 443
+              ssl_certificate_id: "arn:aws:iam::326350832779:server-certificate/SelkirkWildcard"
           health_check:
             ping_protocol: http
             ping_port: 80
