@@ -34,3 +34,49 @@
             unhealthy_threshold: 2
             healthy_threshold: 2
         register: elb
+
+      - name: Create eureka ELB
+        local_action:
+          module: ec2_elb_lb
+          name: FMTdeveureka
+          state: present
+          scheme: internal
+          region: "{{ region }}"
+          zones:
+            - us-west-2a
+          listeners:
+            - protocol: http
+              load_balancer_port: 8761
+              instance_port: 8761
+          health_check:
+            ping_protocol: http
+            ping_port: 8761
+            ping_path: "/eureka/healthcheck" 
+            response_timeout: 5
+            interval: 30 
+            unhealthy_threshold: 2
+            healthy_threshold: 2
+        register: elb
+
+      - name: Create aggregator ELB
+        local_action:
+          module: ec2_elb_lb
+          name: FMTdevagg
+          state: present
+          scheme: internal
+          region: "{{ region }}"
+          zones:
+            - us-west-2a
+          listeners:
+            - protocol: http
+              load_balancer_port: 8080
+              instance_port: 8080
+          health_check:
+            ping_protocol: http
+            ping_port: 8080
+            ping_path: "/health" 
+            response_timeout: 5
+            interval: 30
+            unhealthy_threshold: 2
+            healthy_threshold: 2
+        register: elb
